@@ -41,7 +41,7 @@ struct FPCAScalarParam
  * and holding the actual texture and parameter payload.
  */
 UCLASS(BlueprintType, Blueprintable)
-class CUSTOMTEXTURE2D_API UPCACompressedTextureAsset : public UObject
+class PCACOMPRESSED_API UPCACompressedTextureAsset : public UObject
 {
 	GENERATED_BODY()
 

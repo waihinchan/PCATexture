@@ -11,7 +11,7 @@
  * for a PCA-compressed texture. Typically authored by a Technical Artist.
  */
 UCLASS(BlueprintType, Blueprintable)
-class CUSTOMTEXTURE2D_API UPCADecoderAsset : public UObject
+class PCACOMPRESSED_API UPCADecoderAsset : public UObject
 {
 	GENERATED_BODY()
 

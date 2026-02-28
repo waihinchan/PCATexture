@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class CustomTexture2DEditor : ModuleRules
+public class PCACompressedEditor : ModuleRules
 {
-	public CustomTexture2DEditor(ReadOnlyTargetRules Target) : base(Target)
+	public PCACompressedEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
@@ -17,7 +17,7 @@ public class CustomTexture2DEditor : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"CustomTexture2D",
+				"PCACompressed",
 				"CoreUObject",
 				"Engine",
 				"Slate",

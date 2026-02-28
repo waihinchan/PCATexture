@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class CustomTexture2D : ModuleRules
+public class PCACompressed : ModuleRules
 {
-	public CustomTexture2D(ReadOnlyTargetRules Target) : base(Target)
+	public PCACompressed(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 

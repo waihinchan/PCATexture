@@ -4,7 +4,7 @@
 
 #include "Modules/ModuleManager.h"
 
-class FCustomTexture2DModule : public IModuleInterface
+class FPCACompressedModule : public IModuleInterface
 {
 public:
 	virtual void StartupModule() override;

@@ -10,7 +10,7 @@ class FExtender;
 class FMenuBuilder;
 struct FAssetData;
 
-class FCustomTexture2DEditorModule : public IModuleInterface
+class FPCACompressedEditorModule : public IModuleInterface
 {
 public:
 	// IModuleInterface implementation

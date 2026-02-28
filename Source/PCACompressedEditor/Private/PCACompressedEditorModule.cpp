@@ -1,6 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "CustomTexture2DEditorModule.h"
+#include "PCACompressedEditorModule.h"
 #include "AssetTypeActions_PCACompressedTexture.h"
 #include "AssetTypeActions_PCADecoder.h"
 #include "PCACompressedTextureAsset.h"
@@ -15,9 +15,9 @@
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "PackageTools.h"
 
-#define LOCTEXT_NAMESPACE "FCustomTexture2DEditorModule"
+#define LOCTEXT_NAMESPACE "FPCACompressedEditorModule"
 
-void FCustomTexture2DEditorModule::StartupModule()
+void FPCACompressedEditorModule::StartupModule()
 {
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 	
@@ -34,10 +34,10 @@ void FCustomTexture2DEditorModule::StartupModule()
 	// Register Content Browser Context Menu Extender
 	FContentBrowserModule& ContentBrowserModule = FModuleManager::LoadModuleChecked<FContentBrowserModule>("ContentBrowser");
 	TArray<FContentBrowserMenuExtender_SelectedAssets>& CBAssetMenuExtenders = ContentBrowserModule.GetAllAssetViewContextMenuExtenders();
-	CBAssetMenuExtenders.Add(FContentBrowserMenuExtender_SelectedAssets::CreateRaw(this, &FCustomTexture2DEditorModule::OnExtendContentBrowserAssetSelectionMenu));
+	CBAssetMenuExtenders.Add(FContentBrowserMenuExtender_SelectedAssets::CreateRaw(this, &FPCACompressedEditorModule::OnExtendContentBrowserAssetSelectionMenu));
 }
 
-void FCustomTexture2DEditorModule::ShutdownModule()
+void FPCACompressedEditorModule::ShutdownModule()
 {
 	if (FModuleManager::Get().IsModuleLoaded("AssetTools"))
 	{
@@ -53,7 +53,7 @@ void FCustomTexture2DEditorModule::ShutdownModule()
 	RegisteredAssetTypeActions.Empty();
 }
 
-TSharedRef<FExtender> FCustomTexture2DEditorModule::OnExtendContentBrowserAssetSelectionMenu(const TArray<FAssetData>& SelectedAssets)
+TSharedRef<FExtender> FPCACompressedEditorModule::OnExtendContentBrowserAssetSelectionMenu(const TArray<FAssetData>& SelectedAssets)
 {
 	TSharedRef<FExtender> Extender = MakeShared<FExtender>();
 
@@ -74,26 +74,26 @@ TSharedRef<FExtender> FCustomTexture2DEditorModule::OnExtendContentBrowserAssetS
 			"GetAssetActions",
 			EExtensionHook::After,
 			nullptr,
-			FMenuExtensionDelegate::CreateRaw(this, &FCustomTexture2DEditorModule::AddPCAMenuEntry, SelectedAssets)
+			FMenuExtensionDelegate::CreateRaw(this, &FPCACompressedEditorModule::AddPCAMenuEntry, SelectedAssets)
 		);
 	}
 
 	return Extender;
 }
 
-void FCustomTexture2DEditorModule::AddPCAMenuEntry(FMenuBuilder& MenuBuilder, TArray<FAssetData> SelectedAssets)
+void FPCACompressedEditorModule::AddPCAMenuEntry(FMenuBuilder& MenuBuilder, TArray<FAssetData> SelectedAssets)
 {
 	MenuBuilder.AddMenuEntry(
 		LOCTEXT("CreatePCATexture_Label", "Create PCA Compressed Texture"),
 		LOCTEXT("CreatePCATexture_Tooltip", "Creates a new PCA Compressed Texture asset containing the selected textures."),
 		FSlateIcon(),
 		FUIAction(
-			FExecuteAction::CreateRaw(this, &FCustomTexture2DEditorModule::ExecuteCreatePCATexture, SelectedAssets)
+			FExecuteAction::CreateRaw(this, &FPCACompressedEditorModule::ExecuteCreatePCATexture, SelectedAssets)
 		)
 	);
 }
 
-void FCustomTexture2DEditorModule::ExecuteCreatePCATexture(TArray<FAssetData> SelectedAssets)
+void FPCACompressedEditorModule::ExecuteCreatePCATexture(TArray<FAssetData> SelectedAssets)
 {
 	if (SelectedAssets.Num() == 0) return;
 
@@ -130,4 +130,4 @@ void FCustomTexture2DEditorModule::ExecuteCreatePCATexture(TArray<FAssetData> Se
 
 #undef LOCTEXT_NAMESPACE
 	
-IMPLEMENT_MODULE(FCustomTexture2DEditorModule, CustomTexture2DEditor)
+IMPLEMENT_MODULE(FPCACompressedEditorModule, PCACompressedEditor)

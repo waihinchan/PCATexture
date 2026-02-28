@@ -2,8 +2,8 @@
 	"FileVersion" : 3,
 	"Version" : 1,
 	"VersionName" : "1.0",
-	"FriendlyName" : "Custom Texture 2D",
-	"Description" : "A custom Texture2D asset type plugin.",
+	"FriendlyName" : "PCA Compressed",
+	"Description" : "A PCA Compressed Texture asset type plugin.",
 	"Category" : "Rendering",
 	"CreatedBy" : "Custom",
 	"EnabledByDefault" : false,
@@ -13,12 +13,12 @@
 	"Modules" :
 	[
 		{
-			"Name" : "CustomTexture2D",
+			"Name" : "PCACompressed",
 			"Type" : "Runtime",
 			"LoadingPhase" : "Default"
 		},
 		{
-			"Name" : "CustomTexture2DEditor",
+			"Name" : "PCACompressedEditor",
 			"Type" : "Editor",
 			"LoadingPhase" : "Default"
 		}
