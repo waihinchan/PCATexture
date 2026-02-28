@@ -1,0 +1,16 @@
+# Unreal Engine Plugin Ignore Rules
+Binaries/
+Intermediate/
+.vs/
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+Saved/
+DerivedDataCache/
+*.pdb
+*.obj
+*.o
+*.ilk
