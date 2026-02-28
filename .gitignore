@@ -14,3 +14,11 @@ DerivedDataCache/
 *.obj
 *.o
 *.ilk
+
+# Python & Machine Learning
+Resources/MLScripts/venv/
+Resources/MLScripts/__pycache__/
+Resources/MLScripts/*.bin
+Resources/MLScripts/*.json
+*.pyc
+*.pyo
