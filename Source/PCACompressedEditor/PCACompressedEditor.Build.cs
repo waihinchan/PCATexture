@@ -26,7 +26,13 @@ public class PCACompressedEditor : ModuleRules
 				"AssetTools",
 				"ImageCore",
 				"ContentBrowser",
-				"AssetRegistry"
+				"AssetRegistry",
+				"Projects",
+				"Json",
+				"JsonUtilities",
+				"DeveloperSettings",
+				"WorkspaceMenuStructure",
+				"PropertyEditor"
 			});
 	}
 }

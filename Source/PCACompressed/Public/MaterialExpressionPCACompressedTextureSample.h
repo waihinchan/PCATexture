@@ -9,6 +9,18 @@
 #include "PCACompressedTextureAsset.h"
 #include "MaterialExpressionPCACompressedTextureSample.generated.h"
 
+USTRUCT()
+struct FPCANodeInput
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, Category=PCANodeInput)
+	FName InputName;
+
+	UPROPERTY()
+	FExpressionInput Input;
+};
+
 UCLASS(collapsecategories, hidecategories=Object, MinimalAPI)
 class UMaterialExpressionPCACompressedTextureSample : public UMaterialExpression
 {
@@ -17,12 +29,23 @@ class UMaterialExpressionPCACompressedTextureSample : public UMaterialExpression
 	UPROPERTY(EditAnywhere, Category = MaterialExpressionPCACompressedTextureSample)
 	TObjectPtr<UPCACompressedTextureAsset> PCATextureAsset;
 
+	/** Optional prefix for the exposed material parameters. Automatically generates parameters when the asset is set. */
+	UPROPERTY(EditAnywhere, Category = MaterialExpressionPCACompressedTextureSample)
+	FString ParameterGroupPrefix;
+
+	/** Click to generate and link parameter nodes for all empty inputs */
+	UFUNCTION(CallInEditor, Category = MaterialExpressionPCACompressedTextureSample)
+	void GenerateParameterNodes();
+
 	UPROPERTY(meta = (RequiredInput = "false", ToolTip = "Defaults to 'ConstCoordinate' if not specified"))
 	FExpressionInput Coordinates;
 
 	/** only used if Coordinates is not hooked up */
 	UPROPERTY(EditAnywhere, Category = MaterialExpressionPCACompressedTextureSample, meta = (OverridingInputProperty = "Coordinates"))
 	uint8 ConstCoordinate;
+
+	UPROPERTY()
+	TArray<FPCANodeInput> DynamicInputs;
 
 	// We use an internal custom expression node to leverage the engine's HLSL compilation framework
 	UPROPERTY()
@@ -41,13 +64,10 @@ class UMaterialExpressionPCACompressedTextureSample : public UMaterialExpression
 	virtual TArrayView<FExpressionInput*> GetInputsView() override;
 	virtual FExpressionInput* GetInput(int32 InputIndex) override;
 	virtual FName GetInputName(int32 InputIndex) const override;
-	virtual TArray<FExpressionOutput>& GetOutputs() override;
-	virtual uint32 GetOutputType(int32 OutputIndex) override;
 
 	// These are required by the Material Compiler to track texture references properly and avoid crashes
 	virtual UObject* GetReferencedTexture() const override;
 	virtual bool CanReferenceTexture() const override { return true; }
-	virtual void GetReferencedTextureCollection(TArray<UObject*>& OutTextures);
 #endif
 	//~ End UMaterialExpression Interface
 
@@ -55,5 +75,7 @@ private:
 #if WITH_EDITOR
 	void RebuildOutputsFromAsset();
 	void SyncInternalCustomExpression();
+	
+	TArray<FExpressionInput*> InputsView;
 #endif
 };

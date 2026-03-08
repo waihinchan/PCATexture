@@ -1,25 +1,20 @@
-# Unreal Engine Plugin Ignore Rules
 Binaries/
 Intermediate/
 .vs/
 *.sln
 *.suo
-*.opensdf
-*.sdf
-*.VC.db
-*.VC.opendb
-Saved/
+*.db
+*.opendb
 DerivedDataCache/
-*.pdb
-*.obj
-*.o
-*.ilk
-
-# Python & Machine Learning
-Resources/MLScripts/venv/
+Saved/
+Resources/MLScripts/.venv/
+__pycache__/
+*.pyc
+.idea/
+*.swp
 Resources/MLScripts/__pycache__/
+Resources/MLScripts/pca_compressor/__pycache__/
+Resources/MLScripts/TestOutput/
+Resources/MLScripts/test_output/
 Resources/MLScripts/*.bin
 Resources/MLScripts/*.json
-*.pyc
-*.pyo
-.venv/

@@ -8,8 +8,8 @@ UPCACompressedTextureAsset::UPCACompressedTextureAsset()
 	Decoder = nullptr;
 
 	FPCATextureParam DefaultTex;
-	DefaultTex.Name = TEXT("texture1");
-	Textures.Add(DefaultTex);
+	DefaultTex.Name = TEXT("LatentMap");
+	FeatureMaps.Add(DefaultTex);
 
 	FPCAScalarParam DefaultParam;
 	DefaultParam.Name = TEXT("param1");

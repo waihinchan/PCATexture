@@ -15,5 +15,18 @@ public class PCACompressed : ModuleRules
 				"CoreUObject",
 				"Engine"
 			});
+
+		if (Target.bBuildEditor)
+		{
+			PrivateDependencyModuleNames.AddRange(
+				new string[]
+				{
+					"UnrealEd",
+					"Slate",
+					"SlateCore",
+					"GraphEditor"
+				}
+			);
+		}
 	}
 }
